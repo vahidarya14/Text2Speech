@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
-using System.Threading;
 
 namespace texttospeech
 {
     public partial class Form1 : Form
     {
         int _speed;
-        SpeechSynthesizer _speaker;
+        SpeechSynthesizer _speaker= new SpeechSynthesizer();
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +33,7 @@ namespace texttospeech
                                    };
 
                     // speaker.Speak(textBox1.Text);
-                    _speaker.SpeakCompleted += speaker_SpeakCompleted;
+                    _speaker.SpeakCompleted += ( obj, speakCompletedEventArgs ) => { };
                     //speaker.SelectVoice("a");
                     //speaker.SetOutputToWaveFile("d:\\a.wav");
 
@@ -47,10 +46,7 @@ namespace texttospeech
             }
         }
 
-        void speaker_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
-        {
-            //speaker=null;
-        }
+
 
         private void Button2Click(object sender, EventArgs e)
         {
@@ -105,12 +101,7 @@ namespace texttospeech
             _speaker.Volume = trackBar1.Value;
         }
 
-        private void Form1Load(object sender, EventArgs e)
-        {
-            _speaker = new SpeechSynthesizer();
-        }
 
-   
 
      }
 }
